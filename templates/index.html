@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body>    
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="/static/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            TubeToMP3
+        </a>
+    </div>
+</nav>
+    <div class="container mt-4">
+        <h1 class="text-center">Convertidor Youtube a MP3</h1>
+        <form action="/download" method="post" class="mt-3">
+            <div class="input-group mb-3 justify-content-center">
+                <input type="url" class="form-control custom-input" id="url" name="url" placeholder="Enlace de YouTube" required>
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Convertir</button>
+                </div>
+            <div class="song-info" style="display: none;">
+                    <p id="song-name"></p>
+                    <p id="song-duration"></p>
+                    <a id="download-link" href="#" download>Descargar</a>
+            </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="feature-list">
+        <div class="container">
+            <h2 class="title">¿Como usar TubeToMP3?</h2>
+                <ul class="list">
+                    <li>
+                        <label>PASO 1</label>
+                        <span>
+                            Ve a youtube.com.
+                        </span>
+                    </li>
+                    <li>
+                        <label>PASO 2</label>
+                        <span>
+                            Copie la URL del video (ejemplo: youtube.com/watch?v=KEB0g4OwbBE) del video que desea convertir y péguela en nuestro convertidor.
+                        </span>
+                    </li>
+                    <li>
+                        <label>PASO 3</label>
+                        <span>
+                            Haga clic en el botón Convertir.
+                        </span>
+                    </li>
+                    <li>
+                        <label>PASO 4</label>
+                        <span>
+                            Tan pronto como finalice la conversión, se descargara la cancion.
+                        </span>
+                    </li>
+                </ul>
+            </h2>
+        </div>
+    </div>
+
+    <div class="row mt-5 justify-content-center">
+            <div class="col-md-6 col-lg-4 custom-col mb-3">
+                <div class="info-box">
+                    <i class="fas fa-music icon"></i>
+                    <h5>Alta Calidad</h5>
+                    <p>Convierte videos de YouTube a MP3 con la mejor calidad de audio.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 custom-col mb-3">
+                <div class="info-box">
+                    <i class="fas fa-lock icon"></i>
+                    <h5>Seguro</h5>
+                    <p>Tus datos están seguros y protegidos durante el proceso de conversión.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 custom-col mb-3">
+                <div class="info-box">
+                    <i class="fas fa-fast-forward icon"></i>
+                    <h5>Rápido</h5>
+                    <p>Conversión rápida de videos de YouTube a MP3 sin demoras.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 custom-col mb-3">
+                <div class="info-box">
+                    <i class="fas fa-user icon"></i>
+                    <h5>Fácil de Usar</h5>
+                    <p>Interfaz intuitiva y fácil de usar para todos los usuarios.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <footer>
+        <div class="copyright">
+            <ul>
+                <li>
+                    <a href="#">Términos de servicio</a>
+                </li>
+                <li>
+                    <a href="#">Política de privacidad</a>
+                </li>
+                <li>
+                    <a href="#">Acerca de</a>
+                </li>
+            </ul>
+            <p>@ 2024 TubeToMP3</p>
+        </div>
+    </footer>
+</body>
+</html>

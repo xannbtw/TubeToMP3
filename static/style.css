@@ -1,0 +1,148 @@
+*,::after,::before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+
+:root {
+    --main-color: #3f5fff;
+    --span-color: #777e90;
+    --label-color:#111d37;
+}
+
+
+body {
+    background-color: #f8f9fa;
+}
+h1 {
+    margin-top: 20%;
+    color: var(--main-color);
+}
+
+.custom-input {
+    border-radius: 12px;
+    border-width: 4px;
+    border-color: var(--main-color);
+    width: 100%;
+    margin: 0 auto; 
+    height: 65px;
+
+}
+
+.btn {
+    width: 100px;
+    background-color: var(--main-color);
+    color: #fff;
+    background-color: var(--main-color);
+    border-color: var(--main-color); 
+}
+.btn:hover {
+    background-color: #5f76e6;
+}
+
+.title {
+    font-size: 29px;
+    font-weight: 700;
+    margin-bottom: 56px;
+    text-align: center;
+}
+
+.container {
+    max-width: 1000px !important;
+    margin: 0 auto;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+li {
+    margin-right: 20px;
+}
+
+.feature-list {
+    margin-top: 70px;
+    padding-bottom: 50px; 
+}
+
+.feature-list li {
+    display: flex;
+    margin-bottom: 26px !important;
+}
+
+.feature-list li label {
+    color: var(--label-color);
+    font-size: 18px;
+    font-weight: 700;
+    width: 400px;
+    display: inline-block;
+    text-transform: uppercase;
+    margin-right: 8%;
+}
+
+.feature-list li span {
+    text-align: left;
+    display: inline-block;
+    width: 100%;
+    color: var(--span-color);
+    font-size: 15px;
+}
+
+.info-box {
+    background: #f8f9fa;
+    padding: 20px;
+    border: 1px solid #ddd;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.info-box .icon {
+    font-size: 2rem;
+    color: #605ed5;
+    margin-bottom: 10px;
+}
+
+.custom-col {
+    max-width: 20%; /* Ajusta este valor según sea necesario para que sean más estrechos */
+}
+
+.row {
+    margin-right: 0px;
+}
+
+
+footer {
+    background: #605ed5;
+    padding: 33px 0;
+    text-align: center;
+}
+
+.copyright {
+    background: #605ed5;
+    padding: 33px 0;
+    text-align: center;
+    display: flex;
+    position: relative;
+}
+
+.copyright ul {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.copyright p {
+    color: #fff;
+    position: absolute;
+    left: 66px;
+    opacity: .75;
+    font-size: 14px;
+}
+
+.copyright li a {
+    color: #fff;
+}
