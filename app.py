@@ -1,39 +1,60 @@
-from flask import Flask, request, redirect, url_for, send_file, render_template
-import yt_dlp as youtube_dl  # Importar yt-dlp en lugar de youtube_dl
+from flask import Flask, request, redirect, url_for, send_file, render_template, jsonify
+import yt_dlp as youtube_dl
 import os
+from pymongo import MongoClient
+from bson import ObjectId
+from dotenv import load_dotenv
 
+load_dotenv()
 
-def crear_app():
-    app = Flask(__name__)
+app = Flask(__name__)
 
-    @app.route('/')
-    def index():
-        return render_template('index.html')
+MONGO_URI = "mongodb+srv://inostrozatomas91:NEr1n0w9E2SQAucX@tubetomp3.zhs0swj.mongodb.net/tubetomp3?retryWrites=true&w=majority&tls=true&tlsAllowInvalidCertificates=true"
+client = MongoClient(MONGO_URI)
+db = client.get_database("tubetomp3")
+downloads_collection = db.downloads
 
-    @app.route('/download', methods=['POST'])
-    def download():
-        url = request.form['url']
-        ydl_opts = {
-            'format': 'bestaudio/best',
-            'postprocessors': [{
-                'key': 'FFmpegExtractAudio',
-                'preferredcodec': 'mp3',
-                'preferredquality': '192',
-            }],
-            'outtmpl': 'downloads/%(title)s.%(ext)s',
-            'noplaylist': True,
-        }
+@app.route('/')
+def index():
+    return render_template('index.html')
 
+@app.route('/download', methods=['POST'])
+def download():
+    url = request.form['url']
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'outtmpl': 'temp/%(title)s.%(ext)s',
+        'noplaylist': True,
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '192',
+        }],
+    }
+
+    try:
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(url, download=True)
-            filename = ydl.prepare_filename(info_dict)
-            filename = os.path.splitext(filename)[0] + ".mp3"
-
-        return send_file(filename, as_attachment=True)
-    return app
+            title = info_dict.get('title', None)
+            filename = f"temp/{title}.mp3"
+            new_filename = f"downloads/{title}.mp3"
+            
+            # Verificar si el archivo existe y eliminarlo si es necesario
+            if os.path.exists(new_filename):
+                os.remove(new_filename)
+            
+            os.rename(filename, new_filename)
+            
+            # Guardar información en la base de datos
+            download_record = {
+                "title": title,
+                "filename": new_filename
+            }
+            downloads_collection.insert_one(download_record)
+            
+            return send_file(new_filename, as_attachment=True)
+    except Exception as e:
+        return str(e)
 
 if __name__ == '__main__':
-    if not os.path.exists('downloads'):
-        os.makedirs('downloads')
-    app = crear_app()
     app.run(debug=True)
