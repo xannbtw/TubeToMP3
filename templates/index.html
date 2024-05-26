@@ -20,17 +20,19 @@
 </nav>
     <div class="container mt-4">
         <h1 class="text-center">Convertidor Youtube a MP3</h1>
-        <form action="/download" method="post" class="mt-3">
+        <form action="{{ url_for('download') }}" method="post" class="mt-3">
             <div class="input-group mb-3 justify-content-center">
                 <input type="url" class="form-control custom-input" id="url" name="url" placeholder="Enlace de YouTube" required>
                 <div class="input-group-append">
                     <button class="btn btn-primary" type="submit">Convertir</button>
                 </div>
-            <div class="song-info" style="display: none;">
-                    <p id="song-name"></p>
-                    <p id="song-duration"></p>
-                    <a id="download-link" href="#" download>Descargar</a>
-            </div>
+                {% if title and duration and download_id %}
+                <div id="song-info">
+                    <p id="song-name">Nombre de la canción: {{ title }}</p>
+                    <p id="song-duration">Duración: {{ duration }}</p>
+                    <a id="download-link" href="{{ url_for('get_download', download_id=download_id) }}" download>Download MP3</a>
+                </div>
+                {% endif %}
             </div>
         </form>
     </div>
