@@ -19,3 +19,4 @@ Werkzeug==3.0.3
 yt-dlp==2023.10.13
 pymongo==3.12.1
 dotenv
+poetry
