@@ -39,18 +39,13 @@ def download():
             filename = f"temp/{title}.mp3"
             new_filename = f"downloads/{title}.mp3"
             
-            # Verificar si el archivo existe y eliminarlo si es necesario
-            if os.path.exists(new_filename):
-                os.remove(new_filename)
-            
-            os.rename(filename, new_filename)
-            
-            # Guardar información en la base de datos
             download_record = {
                 "title": title,
                 "filename": new_filename
             }
             downloads_collection.insert_one(download_record)
+            
+            os.rename(filename, new_filename)
             
             return send_file(new_filename, as_attachment=True)
     except Exception as e:
